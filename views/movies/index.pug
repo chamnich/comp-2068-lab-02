@@ -1,0 +1,24 @@
+extends ../layouts/main.pug
+block content
+  .container
+    header
+      h1= title
+
+    div
+      table.table.table-striped
+        thead
+          tr
+            th Title
+            th Actions
+        
+        tbody
+          each movie in movies
+            tr
+              td
+                a(href=`/movies/${movie.id}`)= movie.title
+              td
+                a(href=`movies/${movie.id}/edit`) edit
+                = ' | '
+                form.destroy(action=`/movies/destroy`, method="POST", onsubmit=`return confirm("Are you absolutely sure you want to delete this movie?")`)
+                  input(type="hidden", name="id", value=movie.id)
+                  input(type="submit", value="delete")

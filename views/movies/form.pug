@@ -1,0 +1,19 @@
+form(action=(movie ? '/movies/update' : '/movies'), method="POST")
+  if movie 
+    input(type="hidden", name="id", value=movie.id)
+
+  .form-group
+    label Title
+    input.form-control(name="movie[title]", required, value=(movie ? movie.title : null))
+
+  .form-group
+    label Leading Role
+    input.form-control(name="movie[leadingRole]", required, value=(movie ? movie.leadingRole : null))
+
+  .form-group
+    label Description
+    textarea.form-control(name="movie[description]")
+      = movie ? movie.description : null
+        
+  .form-group
+    button.btn.btn-dark(type="submit") Submit
